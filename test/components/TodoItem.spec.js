@@ -2,12 +2,9 @@ import React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import {
-  renderIntoDocument,
-  scryRenderedDOMComponentsWithTag,
-  findRenderedDOMComponentWithTag,
-  Simulate
+  createRenderer
 } from 'react-addons-test-utils';
-import TodoItem from '../../components/TodoItem';
+import TodoItem from '../../src/components/TodoItem';
 
 function setup() {
   const props = {
@@ -20,13 +17,13 @@ function setup() {
     toggleTodo: spy()
   };
 
-  const renderer = TestUtils.createRenderer();
+  const renderer = createRenderer();
 
   renderer.render(
     <TodoItem {...props} />
   );
 
-  let output = renderer.getRenderOutput();
+  const output = renderer.getRenderOutput();
 
   return {
     props: props,
