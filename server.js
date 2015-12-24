@@ -1,7 +1,10 @@
 var path = require('path');
 var express = require('express');
 var webpack = require('webpack');
+var proxy = require('proxy-middleware');
 var config = require('./webpack.config');
+
+const API_PORT = 8080;
 
 var app = express();
 var compiler = webpack(config);
@@ -14,6 +17,7 @@ app.use(require('webpack-dev-middleware')(compiler, {
 }));
 
 app.use(require('webpack-hot-middleware')(compiler));
+app.use('/api', proxy('http://localhost:' + API_PORT));
 
 app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname, 'index.html'));
