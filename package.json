@@ -53,6 +53,7 @@
     "redux-devtools-log-monitor": "^1.0.1",
     "rimraf": "^2.4.3",
     "sinon": "^1.17.1",
+    "sinon-chai": "^2.8.0",
     "webpack": "^1.12.2",
     "webpack-dev-middleware": "^1.2.0",
     "webpack-hot-middleware": "^2.4.1"
