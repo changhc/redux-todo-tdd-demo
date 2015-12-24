@@ -4,14 +4,22 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import TodoApp from './containers/TodoApp';
 import configureStore from './store/configureStore';
+import fetch from 'isomorphic-fetch';
 import 'todomvc-common/base.css';
 import 'todomvc-app-css/index.css';
 
-const store = configureStore();
+fetch('/api/todos')
+.then(res => res.json())
+.then(data => {
+  console.log(data);
+  const store = configureStore({ todos: data });
 
-render(
-  <Provider store={store}>
-    <TodoApp />
-  </Provider>,
-  document.getElementById('root')
-);
+  render(
+    <Provider store={store}>
+      <TodoApp />
+    </Provider>,
+    document.getElementById('root')
+  );
+});
+
+

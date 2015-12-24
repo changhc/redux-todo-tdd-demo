@@ -20,7 +20,9 @@ router.get('/todos', function(req, res, next) {
 });
 
 router.post('/todos', function(req, res, next) {
+  console.log('req.body', req.body);
   var text = req.body.text;
+  console.log('text', text);
   fs.readFile(DB_PATH, 'utf8', function(err, data) {
     if (err) return next(err);
     var posts;
@@ -30,7 +32,7 @@ router.post('/todos', function(req, res, next) {
       return next(err);
     }
     var newPost = {
-      id: Math.max(_.pluck(posts, 'id')) + 1,
+      id: posts.length === 0 ? 1 : _.max(posts, 'id').id + 1,
       text: text,
       isCompleted: false
     };

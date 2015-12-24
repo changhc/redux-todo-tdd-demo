@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 
 class TodoItem extends Component {
   render() {
-    const { todo, toggleTodo, deleteTodo } = this.props;
+    const { todo, toggleTodoFromServer, deleteTodoFromServer } = this.props;
     return (
       <li>
         <div className="view">
@@ -10,10 +10,10 @@ class TodoItem extends Component {
             className="toggle"
             type="checkbox"
             checked={todo.isCompleted}
-            onChange={() => toggleTodo(todo.id)}
+            onChange={() => toggleTodoFromServer(todo.id)}
           />
           <label>{todo.text}</label>
-          <button className="destroy" onClick={() => deleteTodo(todo.id)}></button>
+          <button className="destroy" onClick={() => deleteTodoFromServer(todo.id)}></button>
         </div>
       </li>
     );

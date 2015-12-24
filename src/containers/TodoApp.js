@@ -12,7 +12,7 @@ class TodoApp extends Component {
     return (
       <div>
         <section className="todoapp">
-          <Header addTodo={actions.addTodo} />
+          <Header addTodo={actions.addTodoToServer} />
           <MainSection todos={todos} actions={actions} />
           <Footer todos={todos} />
         </section>
